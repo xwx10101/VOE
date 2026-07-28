@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VOE • To Do</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="bg-orbs">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
+    </div>
+
+    <div class="app">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo">
+                <div class="logo-mark">V</div>
+                <div>
+                    <h1>VOE</h1>
+                    <p>Focus. Flow. Done.</p>
+                </div>
+            </div>
+            <div class="header-actions">
+                <button id="themeToggle" class="icon-btn" aria-label="Toggle theme">
+                    <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+                    <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+                </button>
+            </div>
+        </header>
+
+        <!-- Stats -->
+        <section class="stats">
+            <div class="stat-card">
+                <span class="stat-num" id="totalTasks">0</span>
+                <span class="stat-label">Total</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-num" id="activeTasks">0</span>
+                <span class="stat-label">Active</span>
+            </div>
+            <div class="stat-card accent">
+                <span class="stat-num" id="completedTasks">0</span>
+                <span class="stat-label">Done</span>
+            </div>
+            <div class="stat-card progress-card">
+                <div class="progress-ring-wrap">
+                    <svg class="progress-ring" width="44" height="44">
+                        <circle class="progress-ring-bg" cx="22" cy="22" r="18"/>
+                        <circle class="progress-ring-fg" id="progressRing" cx="22" cy="22" r="18"/>
+                    </svg>
+                    <span id="progressPercent">0%</span>
+                </div>
+                <span class="stat-label">Progress</span>
+            </div>
+        </section>
+
+        <!-- Add Task -->
+        <section class="add-card">
+            <div class="input-row">
+                <button class="add-icon" id="addBtn" aria-label="Add task">+</button>
+                <input type="text" id="taskInput" placeholder="What needs to be done?" autocomplete="off" maxlength="200">
+            </div>
+            <div class="meta-row">
+                <div class="meta-group">
+                    <label>Priority</label>
+                    <div class="pill-group" id="priorityGroup">
+                        <button data-priority="low" class="pill pill-low active">Low</button>
+                        <button data-priority="medium" class="pill pill-med">Med</button>
+                        <button data-priority="high" class="pill pill-high">High</button>
+                    </div>
+                </div>
+                <div class="meta-group">
+                    <label>Category</label>
+                    <div class="select-wrap">
+                        <select id="categoryInput">
+                            <option value="personal">Personal</option>
+                            <option value="work">Work</option>
+                            <option value="study">Study</option>
+                            <option value="shopping">Shopping</option>
+                            <option value="health">Health</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="meta-group">
+                    <label>Due</label>
+                    <input type="date" id="dueDateInput">
+                </div>
+                <div class="meta-group flex-end">
+                    <span class="hint">↩ to add</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Controls -->
+        <section class="controls">
+            <div class="search-wrap">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+                <input type="text" id="searchInput" placeholder="Search tasks...">
+            </div>
+            <div class="filter-tabs" id="filterTabs">
+                <button data-filter="all" class="tab active">All</button>
+                <button data-filter="active" class="tab">Active</button>
+                <button data-filter="completed" class="tab">Done</button>
+            </div>
+            <div class="sort-wrap">
+                <select id="sortSelect">
+                    <option value="newest">Newest</option>
+                    <option value="oldest">Oldest</option>
+                    <option value="priority">Priority</option>
+                    <option value="due">Due date</option>
+                    <option value="alpha">A-Z</option>
+                </select>
+            </div>
+        </section>
+
+        <!-- Task List -->
+        <section class="list-section">
+            <div id="taskList" class="task-list"></div>
+            <div id="emptyState" class="empty-state">
+                <div class="empty-illust">
+                    <div class="empty-circle"></div>
+                    <div class="empty-dots"><span></span><span></span><span></span></div>
+                </div>
+                <h3>All clear</h3>
+                <p>No tasks here. Add one above or change filter.</p>
+            </div>
+        </section>
+
+        <!-- Footer actions -->
+        <footer class="footer-actions">
+            <button id="clearCompleted" class="text-btn">Clear completed</button>
+            <div class="footer-right">
+                <span id="taskCounter" class="counter">0 tasks left</span>
+                <div class="dot"></div>
+                <span class="hint-sm">Drag to reorder • Double click to edit</span>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Toast -->
+    <div id="toast" class="toast"></div>
+
+    <script src="app.js"></script>
+</body>
+</html>
