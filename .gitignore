@@ -1,0 +1,6 @@
+# generated, and regenerable from source
+node_modules/
+out/
+*-frames/
+*.wav
+video-no-audio.mp4

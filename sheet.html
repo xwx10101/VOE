@@ -1,0 +1,48 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>model sheet</title>
+<canvas id="c"></canvas>
+<script src="assets/core.js"></script>
+<script src="assets/actors.js"></script>
+<script>
+'use strict';
+// A drawing board, not a film: every actor, large, on plain stock.
+const INKSET = { sky:'#f2e2ac', sky2:'#d9713a', sun:'#f2e2ac', cloud:'#f7f1e2', hill:'#c9a979', hillNear:'#c9a979', tree:'#22366b', ground:'#c9a979', ground2:'#8f8a4e', grass:'#8f8a4e', grass2:'#4b7f57', light:'#f7f1e2', shade:'#22366b', haze:'#c9a979' };
+function cell(c, x, y, w, h, label, seed) {
+  c.save(); resetT(c);
+  c.strokeStyle = alpha(INKS.navy, .35); c.lineWidth = 1.6; c.setLineDash([8, 7]); c.strokeRect(x, y, w, h); c.setLineDash([]);
+  c.fillStyle = INKS.navy; c.font = '20px ui-monospace, Menlo, monospace';
+  c.fillText(label, x + 12, y + 28); c.restore();
+}
+function stage(c, tau, i) {
+  paper(c, STOCK, null, 5);
+  // ground lines, so the sheet is judged the way the film will use it
+  c.save(); resetT(c); c.strokeStyle = alpha(INKS.navy,.22); c.lineWidth = 2; c.setLineDash([12,9]);
+  [0.5, 1.0].forEach(f => { c.beginPath(); c.moveTo(0, H * f); c.lineTo(W, H * f); c.stroke(); });
+  c.restore();
+  const COLS = 4, ROWS = 2, cw = W / COLS, chh = H / ROWS;
+  const C = (col, row) => [col * cw + cw / 2, row * chh + chh * .74];
+  // ---- row 1: the mother, four ways
+  let [x, y] = C(0, 0); cell(c, 0, 0, cw, chh, 'mother standing');
+  deerDraw(c, x, y, .62, { walk: .2, stride: 18, liftH: 10, headUp: .25, boil: 0 }, 11, false);
+  [x, y] = C(1, 0); cell(c, cw, 0, cw, chh, 'mother grazing');
+  deerDraw(c, x, y, .62, { walk: .2, stride: 18, liftH: 10, headUp: -.95, boil: 0 }, 11, false);
+  [x, y] = C(2, 0); cell(c, cw * 2, 0, cw, chh, 'mother run');
+  deerDraw(c, x, y, .62, { walk: .62, stride: 48, liftH: 24, air: 26, headUp: 0, roll: -.03, boil: 0, tailLift: .8 }, 11, false);
+  [x, y] = C(3, 0); cell(c, cw * 3, 0, cw, chh, 'mother alert');
+  deerDraw(c, x, y, .62, { walk: .2, stride: 14, liftH: 8, headUp: .5, alert: true, boil: 0 }, 11, false);
+  // ---- row 2: the fawn, the tiger, the butterfly
+  [x, y] = C(0, 1); cell(c, 0, chh, cw, chh, 'fawn sad');
+  deerDraw(c, x, y, .62, { walk: .3, stride: 12, liftH: 6, headUp: .35, sad: true, tears: true, boil: 0 }, 24, true);
+  [x, y] = C(1, 1); cell(c, cw, chh, cw, chh, 'fawn run');
+  deerDraw(c, x, y, .62, { walk: .62, stride: 44, liftH: 22, air: 22, headUp: .1, alert: true, boil: 0, tailLift: .9 }, 24, true);
+  [x, y] = C(2, 1); cell(c, cw * 2, chh, cw, chh, 'tiger stalk + run');
+  tigerDraw(c, x - 120, y, .46, { walk: .2, stride: 22, liftH: 11, boil: 0 }, 41);
+  tigerDraw(c, x + 160, y, .46, { walk: .62, stride: 54, liftH: 26, air: 20, boil: 0 }, 43);
+  [x, y] = C(3, 1); cell(c, cw * 3, chh, cw, chh, 'butterfly + face');
+  butterflyDraw(c, x - 90, y - 60, .9, .3, 61);
+  butterflyDraw(c, x + 120, y + 10, 1.6, .7, 61);
+}
+defineFilm({ palette: 'paperInk', fps: 12, format: { ar: '16:9', width: 1920 },
+  timeline: [{ name: 'sheet', dur: 1, fn: stage }] });
+</script>
