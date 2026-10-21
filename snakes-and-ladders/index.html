@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>السلم والثعبان — لعبة</title>
+  <meta name="description" content="لعبة السلم والثعبان الكلاسيكية: حتى ٤ لاعبين، خصوم آليون، رسوم متحركة وأصوات. العب مباشرة من المتصفح." />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%90%8D%3C/text%3E%3C/svg%3E" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <canvas id="confetti" aria-hidden="true"></canvas>
+
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-ico" aria-hidden="true">🐍</span>
+      <div class="brand-text">
+        <h1>السلم والثعبان</h1>
+        <p>لعبة الطفولة… بلمسة عصرية</p>
+      </div>
+      <span class="brand-ico flip" aria-hidden="true">🪜</span>
+    </div>
+    <div class="top-actions">
+      <button id="soundBtn" class="icon-btn" type="button" title="تشغيل/إيقاف الصوت" aria-label="تشغيل أو إيقاف الصوت">🔊</button>
+      <button id="restartBtn" class="ghost-btn" type="button">إعادة اللعبة</button>
+    </div>
+  </header>
+
+  <main class="game">
+    <section class="board-col">
+      <div class="board-shell">
+        <div class="board" id="board">
+          <div class="cells" id="cells" aria-hidden="true"></div>
+          <canvas id="art" aria-hidden="true"></canvas>
+          <div class="nums" id="nums" aria-hidden="true"></div>
+          <div class="tokens" id="tokens"></div>
+        </div>
+      </div>
+      <div class="legend">
+        <span><i class="dot ladder"></i> سلم يرفعك</span>
+        <span><i class="dot snake"></i> ثعبان يُنزلك</span>
+        <span><i class="dot trophy"></i> الفوز بالمربع ١٠٠</span>
+      </div>
+    </section>
+
+    <aside class="panel">
+      <div class="turn-card" id="turnCard">
+        <span class="turn-dot" id="turnDot"></span>
+        <div class="turn-info">
+          <span class="label">الدور على</span>
+          <strong id="turnName">—</strong>
+        </div>
+        <span class="turn-status" id="turnStatus">ارمِ النرد</span>
+      </div>
+
+      <div class="dice-card">
+        <div class="die" id="die" role="img" aria-label="النرد"></div>
+        <button class="roll-btn" id="rollBtn" type="button">ارمِ النرد</button>
+        <p class="hint" id="hint">اضغط <kbd>مسافة</kbd> للرمي السريع</p>
+      </div>
+
+      <div class="players" id="playersList"></div>
+
+      <div class="log-card">
+        <div class="log-head">
+          <span>سجل اللعب</span>
+          <span class="log-live">مباشر</span>
+        </div>
+        <div class="log" id="log" role="log" aria-live="polite"></div>
+      </div>
+    </aside>
+  </main>
+
+  <div class="modal" id="setupModal">
+    <div class="modal-card setup-card">
+      <h2 class="modal-title">هيا نلعب! <span aria-hidden="true">🐍🪜</span></h2>
+      <p class="modal-sub">اختر عدد اللاعبين وأسماءهم، وحدّد من يلعب ومن يلعب آليًا.</p>
+
+      <div class="count-row" id="countRow" role="group" aria-label="عدد اللاعبين">
+        <button class="count-btn" type="button" data-count="2"><b>٢</b><span>لاعبان</span></button>
+        <button class="count-btn" type="button" data-count="3"><b>٣</b><span>لاعبون</span></button>
+        <button class="count-btn" type="button" data-count="4"><b>٤</b><span>لاعبون</span></button>
+      </div>
+
+      <div class="player-setup" id="playerSetup"></div>
+
+      <button class="primary" id="startBtn" type="button">ابدأ اللعب</button>
+
+      <ul class="rules">
+        <li>الفائز من يصل <b>بدقة</b> إلى المربع ١٠٠.</li>
+        <li>رمي <b>٦</b> يمنحك دورًا إضافيًا.</li>
+        <li>السلم يرفعك للأعلى، والثعبان يعيدك للوراء.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="modal hidden" id="winModal">
+    <div class="modal-card win-card">
+      <div class="win-emoji" aria-hidden="true">🏆</div>
+      <h2 class="modal-title" id="winTitle">فاز اللاعب!</h2>
+      <p class="modal-sub" id="winSub"></p>
+      <div class="win-actions">
+        <button class="primary" id="againBtn" type="button">العب مجددًا</button>
+        <button class="ghost-wide" id="changeBtn" type="button">تغيير اللاعبين</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="game.js" defer></script>
+</body>
+</html>
