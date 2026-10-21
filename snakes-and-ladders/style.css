@@ -154,8 +154,15 @@ button:focus-visible, input:focus-visible { outline: 3px solid var(--gold); outl
   isolation: isolate;
   background: var(--board-a);
 }
-.cells { position: absolute; inset: 0; display: grid; z-index: 0; }
-.nums { position: absolute; inset: 0; display: grid; z-index: 3; pointer-events: none; }
+.cells, .nums {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  grid-template-rows: repeat(10, 1fr);
+}
+.cells { z-index: 0; }
+.nums { z-index: 3; pointer-events: none; }
 .cell {
   position: relative;
   border: 1px solid rgba(15, 35, 60, .09);
