@@ -1,0 +1,76 @@
+{
+  "name": "ldx-workbench",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A secure desktop workspace for LDX hub document workflows.",
+  "main": "electron/main.cjs",
+  "type": "module",
+  "author": "LDX Workbench",
+  "license": "UNLICENSED",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "preview": "vite preview --host 0.0.0.0",
+    "desktop:dev": "concurrently -k \"vite --host 0.0.0.0\" \"wait-on http://127.0.0.1:5173 && electron .\"",
+    "dist:win": "npm run build && electron-builder --win portable --x64",
+    "dist:win:installer": "npm run build && electron-builder --win nsis --x64",
+    "dist:linux": "npm run build && electron-builder --linux AppImage --x64"
+  },
+  "dependencies": {
+    "lucide-react": "^0.468.0",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.15.30",
+    "@types/react": "^19.1.6",
+    "@types/react-dom": "^19.1.6",
+    "@vitejs/plugin-react": "^6.1.2",
+    "concurrently": "^9.2.0",
+    "electron": "^45.0.0",
+    "electron-builder": "^26.15.3",
+    "typescript": "^5.9.2",
+    "vite": "^8.3.5",
+    "wait-on": "^8.0.4"
+  },
+  "overrides": {
+    "global-agent": "4.1.3"
+  },
+  "build": {
+    "appId": "io.ldxhub.workbench",
+    "productName": "LDX Workbench",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "dist/**/*",
+      "electron/**/*",
+      "package.json"
+    ],
+    "asar": true,
+    "win": {
+      "target": [
+        {
+          "target": "portable",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "artifactName": "LDX-Workbench-${version}-portable.${ext}"
+    },
+    "nsis": {
+      "artifactName": "LDX-Workbench-${version}-Setup.${ext}",
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true
+    },
+    "linux": {
+      "target": [
+        "AppImage"
+      ],
+      "category": "Office"
+    }
+  }
+}
