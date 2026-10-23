@@ -19,7 +19,13 @@
     "close": "Close",
     "loading": "Loading…",
     "yearsOld": "yrs",
-    "optional": "Optional"
+    "optional": "Optional",
+    "viewAll": "View all",
+    "edit": "Edit",
+    "delete": "Delete",
+    "today": "Today",
+    "saveChanges": "Save changes",
+    "noData": "No data yet"
   },
   "nav": {
     "pillars": "Pillars",
@@ -298,14 +304,153 @@
     "seafood": "Seafood",
     "eggs": "Eggs"
   },
+  "shell": {
+    "dashboard": "Dashboard",
+    "settings": "Settings",
+    "collapse": "Collapse sidebar",
+    "expand": "Expand sidebar",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "askNasma": "Ask Nasma",
+    "account": "Account",
+    "mainNav": "Main navigation",
+    "dosesLeft": "{{count}} doses left today",
+    "conflictsCount": "{{count}} schedule conflicts"
+  },
   "dashboard": {
-    "phaseBadge": "Foundation ready",
-    "phaseTitle": "Your family space is ready",
-    "phaseDesc": "Authentication, bilingual RTL/LTR experience, theming and family setup are live. The full dashboard — live stats, medication timeline and AI insights — arrives in the next phase.",
-    "yourFamily": "Your family",
-    "yourModules": "Enabled modules",
-    "membersCount": "{{count}} members",
-    "noMembers": "No members yet"
+    "subtitle": "Here's how {{family}} is doing today.",
+    "stats": {
+      "adherence": "Medication adherence",
+      "adherenceSub": "Last 7 days · {{taken}}/{{total}} doses",
+      "dosesToday": "Doses today",
+      "dosesOf": "of {{total}}",
+      "nextDose": "Next: {{med}} · {{time}}",
+      "allDosesDone": "All scheduled doses done",
+      "noDoses": "Nothing scheduled today",
+      "eventsToday": "Events today",
+      "eventsCount": "family events",
+      "nextEvent": "Next: {{event}} · {{time}}",
+      "noEvents": "A quiet day — no events",
+      "conflictsBadge": "{{count}} conflicts",
+      "safety": "Elder safety",
+      "bpLatest": "BP {{value}}",
+      "safetyStable": "Stable",
+      "safetyAttention": "Needs attention",
+      "safetyAlert": "Alert",
+      "safetyAnomalies": "{{count}} unusual days (30d)",
+      "safetyNoData": "No readings logged yet",
+      "safetyNoElder": "No elder member (60+) yet"
+    },
+    "timeline": {
+      "title": "Today's medication timeline",
+      "subtitle": "{{taken}} of {{total}} doses completed",
+      "markTaken": "Mark taken",
+      "taken": "Taken",
+      "missed": "Missed",
+      "due": "Due now",
+      "upcoming": "Upcoming",
+      "skipped": "Skipped",
+      "undo": "Undo",
+      "emptyTitle": "No medications yet",
+      "emptyDesc": "Add your family's medications and today's timeline will appear here.",
+      "emptyAction": "Open Medications"
+    },
+    "scheduleCard": {
+      "title": "Today's schedule",
+      "empty": "Nothing scheduled today. Enjoy the calm!",
+      "conflict": "Conflict",
+      "viewWeek": "View full week"
+    },
+    "insight": {
+      "kicker": "AI Insight",
+      "next": "Next insight",
+      "prev": "Previous insight"
+    },
+    "aiCta": {
+      "title": "Ask Nasma anything",
+      "desc": "“Plan low-sugar dinners” · “How is Grandma this week?” — Nasma understands Arabic & English and acts for you.",
+      "button": "Open Nasma AI"
+    }
+  },
+  "insightCategories": {
+    "medication": "Medications",
+    "nutrition": "Nutrition",
+    "activity": "Activity",
+    "sleep": "Sleep",
+    "hydration": "Hydration",
+    "eldercare": "Elder care",
+    "mindset": "Wellbeing",
+    "familyTime": "Family time"
+  },
+  "medForms": {
+    "tablet": "Tablet",
+    "capsule": "Capsule",
+    "inhaler": "Inhaler",
+    "drops": "Drops",
+    "syrup": "Syrup",
+    "injection": "Injection"
+  },
+  "categories": {
+    "school": "School",
+    "work": "Work",
+    "medical": "Medical",
+    "sport": "Sport",
+    "family": "Family",
+    "other": "Other"
+  },
+  "settings": {
+    "title": "Settings",
+    "subtitle": "Manage your account, family and preferences.",
+    "profile": {
+      "title": "Profile",
+      "desc": "Your account and household identity.",
+      "name": "Your name",
+      "email": "Email address",
+      "familyName": "Family name",
+      "saved": "Profile updated"
+    },
+    "preferences": {
+      "title": "Preferences",
+      "desc": "Language and appearance apply instantly everywhere.",
+      "language": "Language",
+      "theme": "Theme",
+      "light": "Light",
+      "dark": "Dark"
+    },
+    "members": {
+      "title": "Family members",
+      "desc": "Everyone NasmaCare looks after.",
+      "add": "Add member",
+      "edit": "Edit member",
+      "deleteTitle": "Remove {{name}}?",
+      "deleteDesc": "They will no longer be tracked. Their history is kept in exports, and you can re-add them anytime.",
+      "saved": "Member saved",
+      "added": "Member added",
+      "deleted": "Member removed",
+      "empty": "No members yet — add your first family member."
+    },
+    "modules": {
+      "title": "Care modules",
+      "desc": "Disabled modules disappear from the sidebar; their data is kept."
+    },
+    "data": {
+      "title": "Your data",
+      "export": "Export data (JSON)",
+      "exportDesc": "Download everything: profile, family, medications, schedule and health readings.",
+      "exported": "Data exported",
+      "reset": "Reset all data",
+      "resetDesc": "Demo account: restores the original Al Mansouri story. Personal account: clears family & module data and restarts setup.",
+      "resetTitle": "Reset all data?",
+      "resetConfirm": "This action cannot be undone.",
+      "resetDone": "Data has been reset"
+    },
+    "danger": "Danger zone",
+    "logoutDesc": "Sign out of NasmaCare on this device."
+  },
+  "moduleComing": {
+    "badge": "Arriving in Phase {{phase}}",
+    "desc": "This module is being crafted now and lands in Phase {{phase}} of the build. Its live data already flows into your dashboard.",
+    "backDashboard": "Back to dashboard"
   },
   "notFound": {
     "title": "This page wandered off",

@@ -36,13 +36,19 @@ export const DEFAULT_MODULES: ModuleId[] = MODULES.filter((m) => m.defaultEnable
   (m) => m.id,
 );
 
+/** Per-user data domains persisted by the data layer (lib/api.ts). */
+export type DataDomain = 'medications' | 'doseLog' | 'schedule' | 'health';
+export const DATA_DOMAINS: DataDomain[] = ['medications', 'doseLog', 'schedule', 'health'];
+
 /** localStorage keys (versioned so future migrations stay safe). */
 export const STORAGE_KEYS = {
   users: 'nasmacare:v1:users',
   session: 'nasmacare:v1:session',
   family: (userId: string) => `nasmacare:v1:family:${userId}`,
+  data: (userId: string, domain: DataDomain) => `nasmacare:v1:data:${userId}:${domain}`,
   language: 'nasmacare:v1:language',
   theme: 'nasmacare:v1:theme',
+  sidebar: 'nasmacare:v1:sidebar',
 } as const;
 
 /** Feature flags — flip to enable/disable whole experiences without code changes. */

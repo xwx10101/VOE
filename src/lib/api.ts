@@ -7,10 +7,21 @@
  * Security note: passwords are stored as salted SHA-256 hashes (Web Crypto),
  * never in plain text. (Real auth still belongs on a server when we add one.)
  */
-import { DEMO_CREDENTIALS, STORAGE_KEYS } from '@/config/app.config';
+import { DATA_DOMAINS, DEMO_CREDENTIALS, STORAGE_KEYS, type DataDomain } from '@/config/app.config';
 import { mockFamily } from '@/data/mockFamily';
+import { buildMockHealth } from '@/data/mockHealth';
+import { generateMockDoseLog, mockMedications } from '@/data/mockMedications';
+import { mockSchedule } from '@/data/mockSchedule';
 import { uid } from '@/lib/utils';
-import type { Family, SessionUser, UserRecord } from '@/types';
+import type {
+  DoseLogEntry,
+  Family,
+  HealthReading,
+  Medication,
+  ScheduleEvent,
+  SessionUser,
+  UserRecord,
+} from '@/types';
 
 /* ---------------------------------- errors --------------------------------- */
 
@@ -95,11 +106,30 @@ async function hashPassword(email: string, password: string): Promise<string> {
 
 let seedPromise: Promise<void> | null = null;
 
+/** Seed the full Al Mansouri story (family + medications + schedule + health). */
+function seedDemoStory(userId: string): void {
+  writeJSON(STORAGE_KEYS.family(userId), mockFamily);
+  writeJSON(STORAGE_KEYS.data(userId, 'medications'), mockMedications);
+  writeJSON(STORAGE_KEYS.data(userId, 'doseLog'), generateMockDoseLog(mockMedications));
+  writeJSON(STORAGE_KEYS.data(userId, 'schedule'), mockSchedule);
+  writeJSON(STORAGE_KEYS.data(userId, 'health'), buildMockHealth());
+}
+
 /** Ensure the one-click demo account exists exactly once. */
 export function ensureDemoAccount(): Promise<void> {
   seedPromise ??= (async () => {
     const users = readUsers();
-    if (users.some((u) => u.email === DEMO_CREDENTIALS.email)) return;
+    if (users.some((u) => u.email === DEMO_CREDENTIALS.email)) {
+      // Self-heal older installs (e.g. Phase 1) that predate domain seeding.
+      try {
+        if (window.localStorage.getItem(STORAGE_KEYS.data('user-demo', 'medications')) === null) {
+          seedDemoStory('user-demo');
+        }
+      } catch {
+        /* ignore */
+      }
+      return;
+    }
     const demo: UserRecord = {
       id: 'user-demo',
       name: 'Al Mansouri',
@@ -109,7 +139,7 @@ export function ensureDemoAccount(): Promise<void> {
       onboarded: true,
     };
     writeUsers([...users, demo]);
-    writeJSON(STORAGE_KEYS.family(demo.id), mockFamily);
+    seedDemoStory(demo.id);
   })();
   return seedPromise;
 }
@@ -174,6 +204,73 @@ export function clearSession(): void {
 /** Mark onboarding as finished for this user. */
 export function setOnboarded(userId: string): SessionUser | null {
   const updated = patchUser(userId, { onboarded: true });
+  return updated ? toSessionUser(updated) : null;
+}
+
+/** Update the account holder's display name (Settings → Profile). */
+export function updateUserProfile(userId: string, name: string): SessionUser | null {
+  const updated = patchUser(userId, { name: name.trim() });
+  return updated ? toSessionUser(updated) : null;
+}
+
+/* --------------------------- per-user data domains -------------------------- */
+
+/** Load one persisted collection for a user ([] when nothing stored yet). */
+export function loadCollection<T>(userId: string, domain: DataDomain): T[] {
+  return readJSON<T[]>(STORAGE_KEYS.data(userId, domain), []);
+}
+
+/** Persist one collection for a user. */
+export function saveCollection<T>(userId: string, domain: DataDomain, items: T[]): void {
+  writeJSON(STORAGE_KEYS.data(userId, domain), items);
+}
+
+/** Everything we hold for one user — powers Settings "Export my data". */
+export interface UserDataExport {
+  exportedAt: string;
+  app: string;
+  user: SessionUser | null;
+  family: Family | null;
+  medications: Medication[];
+  doseLog: DoseLogEntry[];
+  schedule: ScheduleEvent[];
+  health: HealthReading[];
+}
+
+export function exportUserData(userId: string): UserDataExport {
+  const record = readUsers().find((u) => u.id === userId);
+  return {
+    exportedAt: new Date().toISOString(),
+    app: 'NasmaCare',
+    user: record ? toSessionUser(record) : null,
+    family: loadFamily(userId),
+    medications: loadCollection<Medication>(userId, 'medications'),
+    doseLog: loadCollection<DoseLogEntry>(userId, 'doseLog'),
+    schedule: loadCollection<ScheduleEvent>(userId, 'schedule'),
+    health: loadCollection<HealthReading>(userId, 'health'),
+  };
+}
+
+/**
+ * Reset a user's data (Settings → Danger zone).
+ * Demo account: restore the pristine Al Mansouri story (great for re-demos).
+ * Custom account: wipe family + collections and require onboarding again.
+ */
+export function resetUserData(userId: string): SessionUser | null {
+  if (userId === 'user-demo') {
+    seedDemoStory(userId);
+    const record = readUsers().find((u) => u.id === userId);
+    return record ? toSessionUser(record) : null;
+  }
+  try {
+    window.localStorage.removeItem(STORAGE_KEYS.family(userId));
+    for (const domain of DATA_DOMAINS) {
+      window.localStorage.removeItem(STORAGE_KEYS.data(userId, domain));
+    }
+  } catch {
+    /* ignore */
+  }
+  const updated = patchUser(userId, { onboarded: false });
   return updated ? toSessionUser(updated) : null;
 }
 

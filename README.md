@@ -68,5 +68,9 @@ edit it safely. Brand colors: `src/index.css` (CSS variables) + `tailwind.config
 
 - ✅ **Phase 1 — Foundation & Auth Experience**: design system, logo, i18n/RTL engine,
   landing page, login/register (multi-step), onboarding wizard, demo account.
-- ⏭️ Phase 2 — App shell & dashboard · Phase 3 — Medications & schedule ·
-  Phase 4 — Meals & safety · Phase 5 — Nasma AI Assistant · Phase 6 — PWA & QA.
+- ✅ **Phase 2 — App Shell & Dashboard**: collapsible sidebar + topbar, live dashboard
+  (adherence/doses/events/safety stats, medication timeline, rotating AI insights),
+  Settings (profile, preferences, members CRUD, module toggles, JSON export, reset),
+  domain data layer + conflict & anomaly engines.
+- ⏭️ Phase 3 — Medications & schedule · Phase 4 — Meals & safety ·
+  Phase 5 — Nasma AI Assistant · Phase 6 — PWA & QA.

@@ -64,3 +64,87 @@ export interface SessionUser {
   email: string;
   onboarded: boolean;
 }
+
+/* ------------------------------ Medications ------------------------------ */
+
+/** Physical form of a medication (keys map to i18n "medForms.*"). */
+export type MedicationForm = 'tablet' | 'capsule' | 'inhaler' | 'drops' | 'syrup' | 'injection';
+
+/** A medication prescribed to one family member. */
+export interface Medication {
+  id: string;
+  memberId: string;
+  name: LocalizedString;
+  /** e.g. "850mg", "5mg", "2 puffs" — display string (data, not UI copy). */
+  dosage: string;
+  form: MedicationForm;
+  /** Daily dose times in 24h "HH:MM". Empty when `asNeeded` is true. */
+  times: string[];
+  asNeeded: boolean;
+  instructions: LocalizedString;
+  /** Pills/units currently at home (drives the refill countdown). */
+  supplyRemaining: number;
+  /** Units taken per dose. */
+  unitsPerDose: number;
+  startDate: string; // ISO date key YYYY-MM-DD
+}
+
+export type DoseStatus = 'taken' | 'missed' | 'skipped';
+
+/** One recorded dose outcome (taken/missed/skipped) for a scheduled slot. */
+export interface DoseLogEntry {
+  id: string;
+  medicationId: string;
+  date: string; // YYYY-MM-DD
+  time: string; // HH:MM (the scheduled slot)
+  status: DoseStatus;
+}
+
+/* ------------------------------- Schedule -------------------------------- */
+
+/** Event category (keys map to i18n "categories.*"). */
+export type EventCategory = 'school' | 'work' | 'medical' | 'sport' | 'family' | 'other';
+
+/** A weekly recurring family event (dayOfWeek: 0 = Sunday … 6 = Saturday). */
+export interface ScheduleEvent {
+  id: string;
+  memberId: string;
+  title: LocalizedString;
+  dayOfWeek: number;
+  startTime: string; // HH:MM
+  endTime: string; // HH:MM
+  category: EventCategory;
+  location?: LocalizedString;
+}
+
+/* --------------------------------- Health --------------------------------- */
+
+/** One day of elder health readings (BP + fasting glucose). */
+export interface HealthReading {
+  id: string;
+  memberId: string;
+  date: string; // YYYY-MM-DD
+  systolic: number; // mmHg
+  diastolic: number; // mmHg
+  glucoseMgDl: number; // fasting
+}
+
+/* -------------------------------- Insights -------------------------------- */
+
+export type InsightCategory =
+  | 'medication'
+  | 'nutrition'
+  | 'activity'
+  | 'sleep'
+  | 'hydration'
+  | 'eldercare'
+  | 'mindset'
+  | 'familyTime';
+
+/** A bilingual wellness insight shown on the dashboard (and by the assistant). */
+export interface Insight {
+  id: string;
+  category: InsightCategory;
+  title: LocalizedString;
+  body: LocalizedString;
+}

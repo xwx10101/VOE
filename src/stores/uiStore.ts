@@ -27,10 +27,22 @@ function applyTheme(theme: ThemeMode): void {
   }
 }
 
+function initialSidebarCollapsed(): boolean {
+  try {
+    return window.localStorage.getItem(STORAGE_KEYS.sidebar) === 'collapsed';
+  } catch {
+    return false;
+  }
+}
+
 interface UiState {
   theme: ThemeMode;
   setTheme: (theme: ThemeMode) => void;
   toggleTheme: () => void;
+  /** Desktop sidebar: expanded (272px) vs icon rail (76px). Persisted. */
+  sidebarCollapsed: boolean;
+  setSidebarCollapsed: (collapsed: boolean) => void;
+  toggleSidebar: () => void;
 }
 
 export const useUiStore = create<UiState>()((set, get) => ({
@@ -44,6 +56,16 @@ export const useUiStore = create<UiState>()((set, get) => ({
     applyTheme(next);
     set({ theme: next });
   },
+  sidebarCollapsed: initialSidebarCollapsed(),
+  setSidebarCollapsed: (collapsed) => {
+    try {
+      window.localStorage.setItem(STORAGE_KEYS.sidebar, collapsed ? 'collapsed' : 'expanded');
+    } catch {
+      /* ignore */
+    }
+    set({ sidebarCollapsed: collapsed });
+  },
+  toggleSidebar: () => get().setSidebarCollapsed(!get().sidebarCollapsed),
 }));
 
 /** Apply the persisted theme before first paint (called from main.tsx). */

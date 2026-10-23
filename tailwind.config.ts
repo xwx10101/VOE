@@ -2,6 +2,7 @@
 // Brand: primary #0D9488 (teal) · violet #8B5CF6 · amber #F59E0B.
 // Change a brand color in index.css (--primary etc.) and everything follows.
 import type { Config } from 'tailwindcss';
+import tailwindcssAnimate from 'tailwindcss-animate';
 
 const config: Config = {
   darkMode: ['class'],
@@ -84,6 +85,17 @@ const config: Config = {
         md: 'calc(var(--radius) - 4px)',
         sm: 'calc(var(--radius) - 8px)',
       },
+      // Fractional steps used across the UI (size-4.5 icons, h-6.5 switch…)
+      spacing: {
+        '4.5': '1.125rem',
+        '5.5': '1.375rem',
+        '6.5': '1.625rem',
+      },
+      // Extra alpha steps for tinted surfaces (bg-primary/12, bg-brand-amber/18…)
+      opacity: {
+        12: '0.12',
+        18: '0.18',
+      },
       boxShadow: {
         soft: '0 2px 10px -2px hsl(var(--foreground) / 0.06), 0 12px 32px -12px hsl(var(--foreground) / 0.12)',
         bloom:
@@ -133,7 +145,7 @@ const config: Config = {
       },
     },
   },
-  plugins: [],
+  plugins: [tailwindcssAnimate],
 };
 
 export default config;

@@ -1,13 +1,15 @@
 /*
- * ✏️ TEAM GUIDE: App root — router with animated page transitions, auth
- * hydration on boot, scroll restoration and the global toast system.
- * Phase 2 mounts the authenticated app shell (sidebar) around app routes.
+ * ✏️ TEAM GUIDE: App root — router with animated transitions + auth hydration.
+ * Transition strategy: the outer <Routes> is keyed by "zone" (public pages by
+ * path; the authenticated shell by the constant 'app'), so navigating between
+ * app pages keeps the shell mounted while AppShell animates the inner outlet.
  */
 import { useEffect } from 'react';
 import { BrowserRouter, Route, Routes, useLocation } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
 import { Toaster } from 'sonner';
 import { AnimatedLayout } from '@/components/layout/AnimatedLayout';
+import { AppShell } from '@/components/layout/AppShell';
 import { GuestRoute, OnboardingRoute, ProtectedRoute } from '@/components/layout/ProtectedRoute';
 import { useAuthStore } from '@/stores/authStore';
 import { useUiStore } from '@/stores/uiStore';
@@ -16,7 +18,19 @@ import { Login } from '@/pages/Login';
 import { Register } from '@/pages/Register';
 import { Onboarding } from '@/pages/Onboarding';
 import { Dashboard } from '@/pages/Dashboard';
+import { ModulePlaceholder } from '@/pages/ModulePlaceholder';
+import { Settings } from '@/pages/Settings';
 import { NotFound } from '@/pages/NotFound';
+
+const SHELL_PREFIXES = [
+  '/dashboard',
+  '/medications',
+  '/meals',
+  '/schedule',
+  '/safety',
+  '/assistant',
+  '/settings',
+];
 
 /** Reset scroll position on every navigation. */
 function ScrollToTop() {
@@ -29,9 +43,11 @@ function ScrollToTop() {
 
 function AppRoutes() {
   const location = useLocation();
+  const inShell = SHELL_PREFIXES.some((p) => location.pathname.startsWith(p));
+  const routeKey = inShell ? 'app' : location.pathname;
   return (
     <AnimatePresence mode="wait" initial={false}>
-      <Routes location={location} key={location.pathname}>
+      <Routes location={location} key={routeKey}>
         <Route
           path="/"
           element={
@@ -70,16 +86,73 @@ function AppRoutes() {
             </OnboardingRoute>
           }
         />
+
+        {/* Authenticated app (shell persists across these routes) */}
         <Route
-          path="/dashboard"
           element={
             <ProtectedRoute>
+              <AppShell />
+            </ProtectedRoute>
+          }
+        >
+          <Route
+            path="/dashboard"
+            element={
               <AnimatedLayout>
                 <Dashboard />
               </AnimatedLayout>
-            </ProtectedRoute>
-          }
-        />
+            }
+          />
+          <Route
+            path="/medications"
+            element={
+              <AnimatedLayout>
+                <ModulePlaceholder moduleId="medications" phase={3} />
+              </AnimatedLayout>
+            }
+          />
+          <Route
+            path="/meals"
+            element={
+              <AnimatedLayout>
+                <ModulePlaceholder moduleId="meals" phase={4} />
+              </AnimatedLayout>
+            }
+          />
+          <Route
+            path="/schedule"
+            element={
+              <AnimatedLayout>
+                <ModulePlaceholder moduleId="schedule" phase={3} />
+              </AnimatedLayout>
+            }
+          />
+          <Route
+            path="/safety"
+            element={
+              <AnimatedLayout>
+                <ModulePlaceholder moduleId="safety" phase={4} />
+              </AnimatedLayout>
+            }
+          />
+          <Route
+            path="/assistant"
+            element={
+              <AnimatedLayout>
+                <ModulePlaceholder moduleId="assistant" phase={5} />
+              </AnimatedLayout>
+            }
+          />
+          <Route
+            path="/settings"
+            element={
+              <AnimatedLayout>
+                <Settings />
+              </AnimatedLayout>
+            }
+          />
+        </Route>
+
         <Route
           path="*"
           element={
