@@ -1,0 +1,336 @@
+{
+  "brand": {
+    "nameA": "Nasma",
+    "nameB": "Care",
+    "tagline": "AI that cares for your family, every day"
+  },
+  "common": {
+    "login": "Log in",
+    "register": "Create account",
+    "logout": "Log out",
+    "getStarted": "Get started free",
+    "learnMore": "Learn more",
+    "back": "Back",
+    "next": "Continue",
+    "cancel": "Cancel",
+    "save": "Save",
+    "add": "Add",
+    "remove": "Remove",
+    "close": "Close",
+    "loading": "Loading…",
+    "yearsOld": "yrs",
+    "optional": "Optional"
+  },
+  "nav": {
+    "pillars": "Pillars",
+    "features": "Features",
+    "howAiWorks": "How the AI works",
+    "stories": "Family stories",
+    "menu": "Menu"
+  },
+  "greetings": {
+    "morning": "Good morning",
+    "afternoon": "Good afternoon",
+    "evening": "Good evening"
+  },
+  "landing": {
+    "badge": "Made for the UAE Year of Family · 2026",
+    "heroTitleA": "One caring AI for",
+    "heroTitleAccent": "your whole family",
+    "heroTitleB": "health, meals, time & peace of mind.",
+    "heroSubtitle": "NasmaCare unifies medications, nutrition, schedules and elder care into one proactive platform — so caring for the people you love stops being a burden, and becomes intelligent, shared and calm.",
+    "heroPrimary": "Start caring smarter",
+    "heroSecondary": "Try the live demo",
+    "heroNote": "Free demo · Arabic & English · Works offline",
+    "preview": {
+      "title": "Family wellbeing at a glance",
+      "adherence": "Medication adherence",
+      "medsTitle": "Today's medications",
+      "med1Name": "Metformin 850mg",
+      "med1Meta": "Mariam · 8:00 AM · after breakfast",
+      "med2Name": "Amlodipine 5mg",
+      "med2Meta": "Mariam · 8:00 AM · blood pressure",
+      "med3Name": "Ventolin inhaler",
+      "med3Meta": "Omar · as needed · asthma",
+      "taken": "Taken",
+      "upcoming": "Upcoming",
+      "insightKicker": "Nasma AI Insight",
+      "insightText": "Grandma's glucose has been stable for 6 days. Keep up the low-sugar dinners!",
+      "mealChip": "Weekly meal plan ready",
+      "mealChipSub": "21 meals · diabetic-friendly · within budget",
+      "bpTitle": "Blood pressure · 30 days",
+      "bpStatus": "In healthy range",
+      "scheduleChip": "Clash resolved by AI",
+      "scheduleChipSub": "Football moved to 5:30 PM"
+    },
+    "problemEyebrow": "The problem we solve",
+    "problemTitle": "Family care is fragmented. Families deserve better.",
+    "problemText": "Modern families juggle fragmented health routines, medications, meals, schedules and elder care — scattered across notes, memory and guesswork. NasmaCare unifies all of it into one AI-powered family wellbeing platform, so care for the people you love becomes intelligent, proactive and shared.",
+    "pillarsEyebrow": "Built on four pillars of family wellbeing",
+    "pillarsTitle": "Every feature serves your family. Nothing else.",
+    "pillarsSubtitle": "In the UAE's Year of Family, we focus on what multigenerational households truly need — health, nourishment, time together, and peace of mind.",
+    "pillars": {
+      "health": {
+        "title": "Family Health",
+        "desc": "Medication intelligence, adherence analytics and elder safety — caring for parents and grandparents under one roof."
+      },
+      "nutrition": {
+        "title": "Family Nutrition",
+        "desc": "AI meal plans that respect allergies, diabetes, hypertension and your budget — healthy food the whole table enjoys."
+      },
+      "time": {
+        "title": "Family Time",
+        "desc": "One intelligent schedule that balances school, work and clinic visits — and fixes clashes before they stress you out."
+      },
+      "peace": {
+        "title": "Peace of Mind",
+        "desc": "Predictive alerts and a caring AI assistant watch over your loved ones, so working parents can finally breathe."
+      }
+    },
+    "featuresEyebrow": "Five intelligent modules",
+    "featuresTitle": "Everything your family needs, one caring platform",
+    "featuresSubtitle": "Not passive tracking — proactive AI that predicts, prevents and suggests, every single day.",
+    "signature": "Signature",
+    "bentoChatUser": "Send me grandma's health summary",
+    "bentoChatReply": "Mariam week: BP averaged 128/82, glucose stable, 96% of doses on time. One gentle alert on Tuesday — report is ready to share.",
+    "howEyebrow": "Real AI, explained simply",
+    "howTitle": "How the AI cares",
+    "howSubtitle": "Four purpose-built engines work together on-device — no API key, no cloud, fully bilingual.",
+    "steps": {
+      "understand": {
+        "title": "It understands",
+        "desc": "A bilingual intent engine understands Arabic and English — “Plan low-sugar dinners this week” — and acts instantly inside the app."
+      },
+      "solve": {
+        "title": "It solves",
+        "desc": "A constraint solver balances allergies, medical conditions, ages and your AED budget to build a week of meals everyone can enjoy."
+      },
+      "predict": {
+        "title": "It predicts",
+        "desc": "Statistical anomaly detection (z-score + clinical rules) watches blood pressure and glucose, flagging risks before they become emergencies."
+      },
+      "summarize": {
+        "title": "It summarizes",
+        "desc": "Weekly bilingual health reports turn raw readings into clear, printable guidance you can share with your doctor."
+      }
+    },
+    "stats": {
+      "intents": "AI intents understood in Arabic & English",
+      "recipes": "bilingual family recipes in the planner",
+      "trends": "days of health-trend & anomaly insight",
+      "offline": "offline-capable — no API key required"
+    },
+    "storiesEyebrow": "Real family moments",
+    "storiesTitle": "Meet the Al Mansouri family",
+    "storiesSubtitle": "A multigenerational Emirati household — two working parents, two kids, and Grandma Mariam at its heart.",
+    "story1": {
+      "quote": "I used to track my mother's pills in a notebook. Now NasmaCare reminds us, records every dose, and warns me before a refill runs out.",
+      "name": "Fatima",
+      "role": "Mother of two, caring for Mariam, 72"
+    },
+    "story2": {
+      "quote": "Dinner was a daily puzzle — my mother's diabetes, Omar nut allergy, and a monthly budget. The AI now plans our whole week in seconds.",
+      "name": "Ahmed",
+      "role": "Father & head of the household"
+    },
+    "story3": {
+      "quote": "Football, tutoring and Grandma's clinic visits finally fit in one calendar. NasmaCare spots the clash and suggests the fix before Mum worries.",
+      "name": "Omar, 14",
+      "role": "Student & football captain"
+    },
+    "ctaTitle": "Give your family the care they deserve",
+    "ctaSubtitle": "Join NasmaCare and let AI carry the mental load — so you can be present for the moments that matter.",
+    "ctaButton": "Create your family account"
+  },
+  "modules": {
+    "medications": {
+      "title": "Smart Medication Intelligence",
+      "desc": "Per-member schedules, adherence analytics, missed-dose risk scoring and refill countdowns — so no dose is ever forgotten."
+    },
+    "meals": {
+      "title": "AI Meal Planner",
+      "desc": "Constraint-solving weekly plans from 40+ bilingual recipes, honoring allergies, conditions and budget — with an automatic shopping list."
+    },
+    "schedule": {
+      "title": "Family Schedule Intelligence",
+      "desc": "One shared week view that detects clashes automatically and suggests the smart fix before chaos happens."
+    },
+    "safety": {
+      "title": "Elder Safety & Predictive Alerts",
+      "desc": "Blood-pressure and glucose tracking with AI anomaly detection and printable weekly reports for total peace of mind."
+    },
+    "assistant": {
+      "title": "Nasma AI Assistant",
+      "desc": "Just ask — in Arabic or English. Nasma understands, navigates, plans and summarizes across the whole platform."
+    }
+  },
+  "auth": {
+    "loginTitle": "Welcome back",
+    "loginSubtitle": "Your family missed you. Log in to continue caring.",
+    "registerTitle": "Create your family account",
+    "registerSubtitle": "Three quick steps to a calmer, healthier home.",
+    "fullName": "Full name",
+    "namePlaceholder": "e.g. Sara Al Mansouri",
+    "email": "Email address",
+    "emailPlaceholder": "you@family.com",
+    "password": "Password",
+    "passwordPlaceholder": "At least 8 characters",
+    "confirmPassword": "Confirm password",
+    "showPassword": "Show password",
+    "hidePassword": "Hide password",
+    "signIn": "Log in",
+    "signingIn": "Logging in…",
+    "createAccount": "Create account",
+    "creating": "Creating your account…",
+    "noAccount": "New to NasmaCare?",
+    "registerNow": "Create an account",
+    "haveAccount": "Already have an account?",
+    "signInNow": "Log in",
+    "strength": {
+      "label": "Password strength",
+      "weak": "Weak",
+      "fair": "Fair",
+      "good": "Good",
+      "strong": "Strong"
+    },
+    "familyName": "Family name",
+    "familyNamePlaceholder": "e.g. Al Mansouri Family",
+    "householdSize": "How many people will you care for?",
+    "householdSizeHint": "You will add their details right after signing up.",
+    "terms": "I agree to the Terms of Service and Privacy Policy, and I understand NasmaCare supports — never replaces — professional medical advice.",
+    "demo": {
+      "title": "Just exploring?",
+      "desc": "Step into the Al Mansouri family's home with one click.",
+      "button": "Enter demo account"
+    },
+    "steps": {
+      "account": "Account",
+      "accountDesc": "Your secure sign-in",
+      "family": "Your family",
+      "familyDesc": "Name your household",
+      "modules": "Modules",
+      "modulesDesc": "Choose what to enable"
+    },
+    "errors": {
+      "required": "This field is required",
+      "nameShort": "Please enter your full name",
+      "emailInvalid": "Please enter a valid email address",
+      "passwordShort": "Password must be at least 8 characters",
+      "passwordMismatch": "Passwords do not match",
+      "termsRequired": "Please accept the terms to continue",
+      "emailTaken": "An account with this email already exists",
+      "invalidCredentials": "Incorrect email or password",
+      "familyNameRequired": "Please name your family",
+      "moduleRequired": "Enable at least one module",
+      "generic": "Something went wrong. Please try again."
+    },
+    "success": {
+      "welcomeBack": "Welcome back, {{name}}",
+      "accountCreated": "Account created — let's set up your family",
+      "loggedOut": "You have been logged out. Take care!"
+    },
+    "brandPanel": {
+      "headline": "Care that feels like family",
+      "sub": "Medications, meals, schedules and elder safety — unified by caring AI, in Arabic and English.",
+      "card1Title": "Medication reminder",
+      "card1Sub": "Mariam · Metformin 850mg · 8:00 AM",
+      "card2Title": "Nasma AI Insight",
+      "card2Sub": "Grandma's glucose is stable this week — great job!",
+      "card3Title": "Meal plan ready",
+      "card3Sub": "7 diabetic-friendly dinners within budget",
+      "quote": "“The strongest families are built on care — we simply gave that care a little intelligence.”",
+      "quoteBy": "The NasmaCare team"
+    }
+  },
+  "onboarding": {
+    "eyebrow": "Family setup",
+    "steps": {
+      "members": "Family members",
+      "modules": "Care modules",
+      "done": "All set"
+    },
+    "membersTitle": "Who is in your family?",
+    "membersDesc": "Add everyone you care for — children, parents, grandparents. Nasma tailors medications, meals and alerts to each person.",
+    "memberLabel": "Member {{n}}",
+    "name": "Name",
+    "namePlaceholder": "e.g. Grandma Mariam",
+    "age": "Age",
+    "agePlaceholder": "72",
+    "relation": "Relation to you",
+    "conditions": "Health conditions",
+    "allergies": "Allergies",
+    "addMember": "Add another member",
+    "removeMember": "Remove member",
+    "errors": {
+      "atLeastOne": "Add at least one family member",
+      "nameRequired": "Every member needs a name",
+      "ageInvalid": "Enter a valid age between 0 and 120"
+    },
+    "modulesTitle": "Choose your care modules",
+    "modulesDesc": "Enable the intelligence your family needs today. You can change this anytime in Settings.",
+    "doneTitle": "Your family is ready, {{name}}!",
+    "doneDesc": "NasmaCare is now watching over {{family}} — medications, meals, schedules and safety, all in one caring place.",
+    "goDashboard": "Go to my dashboard",
+    "success": "Family setup complete — welcome home!"
+  },
+  "relations": {
+    "self": "Me",
+    "spouse": "Spouse",
+    "father": "Father",
+    "mother": "Mother",
+    "son": "Son",
+    "daughter": "Daughter",
+    "grandfather": "Grandfather",
+    "grandmother": "Grandmother",
+    "other": "Other"
+  },
+  "conditions": {
+    "diabetes": "Diabetes",
+    "hypertension": "Hypertension",
+    "asthma": "Asthma",
+    "heartDisease": "Heart disease",
+    "highCholesterol": "High cholesterol"
+  },
+  "allergies": {
+    "nuts": "Nuts",
+    "dairy": "Dairy",
+    "gluten": "Gluten",
+    "seafood": "Seafood",
+    "eggs": "Eggs"
+  },
+  "dashboard": {
+    "phaseBadge": "Foundation ready",
+    "phaseTitle": "Your family space is ready",
+    "phaseDesc": "Authentication, bilingual RTL/LTR experience, theming and family setup are live. The full dashboard — live stats, medication timeline and AI insights — arrives in the next phase.",
+    "yourFamily": "Your family",
+    "yourModules": "Enabled modules",
+    "membersCount": "{{count}} members",
+    "noMembers": "No members yet"
+  },
+  "notFound": {
+    "title": "This page wandered off",
+    "desc": "Even the best families lose track of things sometimes. Let's bring you back home.",
+    "backHome": "Back to home",
+    "goDashboard": "Go to dashboard"
+  },
+  "theme": {
+    "toggle": "Toggle theme",
+    "light": "Light",
+    "dark": "Dark"
+  },
+  "language": {
+    "label": "Language",
+    "switch": "Switch language"
+  },
+  "footer": {
+    "tagline": "AI that cares for your family, every day.",
+    "pillarsTitle": "Wellbeing pillars",
+    "modulesTitle": "Modules",
+    "competition": "Built for the 6th COE STEM Competition — Abu Dhabi University · Advanced Track (Champions)",
+    "yearOfFamily": "In celebration of the UAE Year of Family 2026",
+    "rights": "© 2026 NasmaCare. Made with care in the UAE."
+  },
+  "a11y": {
+    "skipToContent": "Skip to main content"
+  }
+}
