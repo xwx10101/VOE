@@ -1,10 +1,10 @@
 /*
  * ✏️ TEAM: edit everything here — the Al Mansouri weekly rhythm (24 events).
- * dayOfWeek: 0=Sunday … 6=Saturday. Two deliberate CONFLICTS are baked in so
- * the schedule intelligence has something real to catch:
- *   ⚠️ Tuesday — Omar football 16:00–17:30 overlaps math tutoring 16:30–17:30
- *   ⚠️ Wednesday — Fatima parents' meeting 17:00–18:00 overlaps driving
- *      Mariam to her clinic check 17:30–18:30
+ * dayOfWeek: 0=Sunday … 6=Saturday. `withMemberId` = companion who must also
+ * be free (e.g. who drives Grandma). Two deliberate CONFLICTS are baked in:
+ *   ⚠️ Tuesday — Omar football 16:00–17:30 overlaps his math tutoring 16:30–17:30
+ *   ⚠️ Wednesday — Fatima parents' meeting 17:00–18:00, but she must accompany
+ *      Mariam to her clinic review 17:30–18:30 (companion clash)
  */
 import type { ScheduleEvent } from '@/types';
 
@@ -25,12 +25,12 @@ export const mockSchedule: ScheduleEvent[] = [
   { id: 'evt-layla-school-wed', memberId: 'member-layla', title: { ar: 'المدرسة', en: 'School' }, dayOfWeek: 3, startTime: '07:30', endTime: '13:45', category: 'school' },
   { id: 'evt-layla-school-thu', memberId: 'member-layla', title: { ar: 'المدرسة', en: 'School' }, dayOfWeek: 4, startTime: '07:30', endTime: '13:45', category: 'school' },
   { id: 'evt-layla-piano-wed', memberId: 'member-layla', title: { ar: 'درس بيانو', en: 'Piano lesson' }, dayOfWeek: 3, startTime: '15:30', endTime: '16:15', category: 'other', location: { ar: 'مركز الموسيقى', en: 'Music center' } },
-  { id: 'evt-layla-swim-sat', memberId: 'member-layla', title: { ar: 'درس سباحة', en: 'Swimming lesson' }, dayOfWeek: 6, startTime: '09:00', endTime: '10:00', category: 'sport', location: { ar: 'النادي الرياضي', en: 'Sports club' } },
+  { id: 'evt-layla-swim-sat', memberId: 'member-layla', title: { ar: 'درس سباحة', en: 'Swimming lesson' }, dayOfWeek: 6, startTime: '09:00', endTime: '10:00', category: 'sport', location: { ar: 'النادي الرياضي', en: 'Sports club' }, withMemberId: 'member-ahmed' },
 
   // ---- Mariam (72, grandmother) ----
-  { id: 'evt-mariam-clinic-wed', memberId: 'member-mariam', title: { ar: 'مراجعة عيادة القلب', en: 'Cardiology clinic review' }, dayOfWeek: 3, startTime: '17:30', endTime: '18:30', category: 'medical', location: { ar: 'مركز الخليج الطبي', en: 'Khalij Medical Center' } },
-  { id: 'evt-mariam-physio-mon', memberId: 'member-mariam', title: { ar: 'جلسة علاج طبيعي', en: 'Physiotherapy session' }, dayOfWeek: 1, startTime: '10:00', endTime: '11:00', category: 'medical', location: { ar: 'عيادة العلاج الطبيعي', en: 'Physio clinic' } },
-  { id: 'evt-mariam-walk-fri', memberId: 'member-mariam', title: { ar: 'مشي صباحي مع فاطمة', en: 'Morning walk with Fatima' }, dayOfWeek: 5, startTime: '06:30', endTime: '07:15', category: 'family', location: { ar: 'حديقة الحي', en: 'Neighborhood park' } },
+  { id: 'evt-mariam-clinic-wed', memberId: 'member-mariam', title: { ar: 'مراجعة عيادة القلب', en: 'Cardiology clinic review' }, dayOfWeek: 3, startTime: '17:30', endTime: '18:30', category: 'medical', location: { ar: 'مركز الخليج الطبي', en: 'Khalij Medical Center' }, withMemberId: 'member-fatima' },
+  { id: 'evt-mariam-physio-mon', memberId: 'member-mariam', title: { ar: 'جلسة علاج طبيعي', en: 'Physiotherapy session' }, dayOfWeek: 1, startTime: '10:00', endTime: '11:00', category: 'medical', location: { ar: 'عيادة العلاج الطبيعي', en: 'Physio clinic' }, withMemberId: 'member-ahmed' },
+  { id: 'evt-mariam-walk-fri', memberId: 'member-mariam', title: { ar: 'مشي صباحي مع فاطمة', en: 'Morning walk with Fatima' }, dayOfWeek: 5, startTime: '06:30', endTime: '07:15', category: 'family', location: { ar: 'حديقة الحي', en: 'Neighborhood park' }, withMemberId: 'member-fatima' },
   { id: 'evt-mariam-diabetes-thu', memberId: 'member-mariam', title: { ar: 'فحص سكري شهري', en: 'Monthly diabetes check' }, dayOfWeek: 4, startTime: '09:00', endTime: '09:45', category: 'medical', location: { ar: 'المختبر الطبي', en: 'Medical lab' } },
 
   // ---- Fatima (42) ----

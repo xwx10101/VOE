@@ -452,6 +452,115 @@
     "desc": "This module is being crafted now and lands in Phase {{phase}} of the build. Its live data already flows into your dashboard.",
     "backDashboard": "Back to dashboard"
   },
+  "meds": {
+    "subtitle": "Every dose, every member — tracked, predicted, and refilled on time.",
+    "add": "Add medication",
+    "edit": "Edit medication",
+    "allMembers": "All family",
+    "adherence7d": "7-day adherence",
+    "adherenceOf": "{{taken}} of {{total}} doses taken",
+    "trendTitle": "Adherence trend",
+    "trendSub": "Last 14 days",
+    "trendLabel": "Adherence",
+    "risk": { "label": "Miss risk", "low": "Low", "medium": "Medium", "high": "High" },
+    "refill": {
+      "unitsLeft": "{{count}} left",
+      "daysLeft": "~{{count}} days",
+      "now": "Refill now",
+      "soon": "Refill soon",
+      "alertTitle": "Refills need attention",
+      "alertItem": "{{med}} ({{member}}) — {{days}}"
+    },
+    "asNeeded": "As needed",
+    "eveningMisses": "Evening dose missed {{count}}× this week",
+    "noDosesToday": "No doses scheduled today",
+    "perMedAdherence": "7-day adherence",
+    "empty": {
+      "title": "No medications yet",
+      "desc": "Add your first medication and NasmaCare will track doses, adherence and refills.",
+      "action": "Add medication"
+    },
+    "emptyMember": {
+      "title": "Nothing for {{name}} yet",
+      "desc": "This member has no medications. Add one to start tracking."
+    },
+    "form": {
+      "name": "Medication name",
+      "namePlaceholder": "e.g. Metformin",
+      "dosage": "Dosage",
+      "dosagePlaceholder": "e.g. 850mg",
+      "formLabel": "Form",
+      "member": "Family member",
+      "times": "Dose times",
+      "addTime": "Add time",
+      "removeTime": "Remove time",
+      "asNeeded": "Taken only as needed (no fixed times)",
+      "instructions": "Instructions",
+      "instructionsPlaceholder": "e.g. With breakfast",
+      "supply": "Units at home",
+      "unitsPerDose": "Units per dose",
+      "errors": {
+        "nameRequired": "Medication name is required",
+        "dosageRequired": "Dosage is required",
+        "timeRequired": "Add at least one dose time",
+        "supplyInvalid": "Enter a valid supply (0 or more)"
+      }
+    },
+    "deleteTitle": "Delete {{name}}?",
+    "deleteDesc": "The medication and its dose history will be removed from tracking.",
+    "saved": "Medication saved",
+    "added": "Medication added",
+    "deleted": "Medication deleted"
+  },
+  "sched": {
+    "subtitle": "One shared week for the whole family — clashes caught before they happen.",
+    "add": "Add event",
+    "edit": "Edit event",
+    "allMembers": "All family",
+    "bannerTitle": "{{count}} scheduling conflicts need your attention",
+    "bannerDesc": "Nasma AI found the overlaps and prepared one-tap fixes.",
+    "conflictDesc": "{{member}} is double-booked on {{day}}: «{{a}}» ({{aTime}}) overlaps «{{b}}» ({{bTime}}).",
+    "suggestionKicker": "AI suggestion",
+    "moveTo": "Move «{{event}}» to {{day}} · {{start}} – {{end}}",
+    "reasonShiftAfter": "It starts right after «{{other}}» ends — the overlap disappears.",
+    "reasonShiftBefore": "It fits neatly before «{{other}}» starts.",
+    "reasonNextDay": "Same time next day — that slot is completely free.",
+    "noSuggestion": "No free slot found automatically. Edit one of the events manually.",
+    "apply": "Apply fix",
+    "dismiss": "Dismiss",
+    "applied": "Conflict resolved — schedule updated",
+    "withCompanion": "with {{name}}",
+    "form": {
+      "title": "Event title",
+      "titlePlaceholder": "e.g. Football training",
+      "member": "Family member",
+      "day": "Day of week",
+      "start": "Start",
+      "end": "End",
+      "category": "Category",
+      "location": "Location",
+      "locationPlaceholder": "e.g. Club academy",
+      "companion": "Companion",
+      "companionNone": "Nobody",
+      "companionHint": "Who must accompany (e.g. drive Grandma)? We check their calendar too.",
+      "errors": {
+        "titleRequired": "Event title is required",
+        "endAfterStart": "End time must be after start time"
+      },
+      "deleteEvent": "Delete event"
+    },
+    "deleteTitle": "Delete «{{event}}»?",
+    "deleteDesc": "This weekly event will be removed for everyone.",
+    "saved": "Event saved",
+    "added": "Event added",
+    "deleted": "Event deleted",
+    "conflictCreated": "Saved — but it clashes with «{{event}}». See the suggestions above.",
+    "empty": {
+      "title": "Your week is empty",
+      "desc": "Add school, work, clinic visits and family time — Nasma will watch for clashes.",
+      "action": "Add your first event"
+    }
+  },
   "notFound": {
     "title": "This page wandered off",
     "desc": "Even the best families lose track of things sometimes. Let's bring you back home.",

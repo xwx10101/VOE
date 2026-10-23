@@ -115,6 +115,11 @@ export interface ScheduleEvent {
   endTime: string; // HH:MM
   category: EventCategory;
   location?: LocalizedString;
+  /**
+   * Optional companion who must also be free (e.g. who drives Grandma to the
+   * clinic). The conflict engine checks the companion's calendar too.
+   */
+  withMemberId?: string;
 }
 
 /* --------------------------------- Health --------------------------------- */

@@ -120,10 +120,19 @@ export function ensureDemoAccount(): Promise<void> {
   seedPromise ??= (async () => {
     const users = readUsers();
     if (users.some((u) => u.email === DEMO_CREDENTIALS.email)) {
-      // Self-heal older installs (e.g. Phase 1) that predate domain seeding.
+      // Self-heal older installs that predate later seed data:
       try {
+        // (a) Phase 1 installs have no domain collections at all.
         if (window.localStorage.getItem(STORAGE_KEYS.data('user-demo', 'medications')) === null) {
           seedDemoStory('user-demo');
+        } else {
+          // (b) Phase 2 installs have a schedule without companions (Phase 3 feature).
+          // The schedule was read-only until Phase 3, so refreshing it loses nothing.
+          const stored = loadCollection<ScheduleEvent>('user-demo', 'schedule');
+          const clinic = stored.find((e) => e.id === 'evt-mariam-clinic-wed');
+          if (clinic && !clinic.withMemberId) {
+            writeJSON(STORAGE_KEYS.data('user-demo', 'schedule'), mockSchedule);
+          }
         }
       } catch {
         /* ignore */

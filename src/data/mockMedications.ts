@@ -33,7 +33,7 @@ export const mockMedications: Medication[] = [
     times: ['08:00', '20:00'],
     asNeeded: false,
     instructions: { ar: 'مع الإفطار والعشاء للسكري', en: 'With breakfast and dinner for diabetes' },
-    supplyRemaining: 17,
+    supplyRemaining: 13,
     unitsPerDose: 1,
     startDate: daysAgo(180),
   },
@@ -46,7 +46,7 @@ export const mockMedications: Medication[] = [
     times: ['08:00'],
     asNeeded: false,
     instructions: { ar: 'قرص واحد صباحًا مع الأملوديبين', en: 'One tablet in the morning with Amlodipine' },
-    supplyRemaining: 11,
+    supplyRemaining: 3,
     unitsPerDose: 1,
     startDate: daysAgo(150),
   },
@@ -72,7 +72,7 @@ export const mockMedications: Medication[] = [
     times: ['21:00'],
     asNeeded: false,
     instructions: { ar: 'قرص قبل النوم للكوليسترول', en: 'One tablet at bedtime for cholesterol' },
-    supplyRemaining: 9,
+    supplyRemaining: 5,
     unitsPerDose: 1,
     startDate: daysAgo(120),
   },
@@ -163,7 +163,7 @@ export const mockMedications: Medication[] = [
 const ADHERENCE_TARGETS: Record<string, number> = {
   'med-mariam-amlodipine': 97,
   'med-mariam-metformin': 96, // morning slot
-  'med-mariam-metformin@20:00': 78, // evening slot — the risk to surface
+  'med-mariam-metformin@20:00': 62, // evening slot — the risk to surface
   'med-mariam-losartan': 95,
   'med-mariam-aspirin': 98,
   'med-mariam-atorvastatin': 90,

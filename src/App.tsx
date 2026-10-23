@@ -18,6 +18,8 @@ import { Login } from '@/pages/Login';
 import { Register } from '@/pages/Register';
 import { Onboarding } from '@/pages/Onboarding';
 import { Dashboard } from '@/pages/Dashboard';
+import { Medications } from '@/pages/Medications';
+import { Schedule } from '@/pages/Schedule';
 import { ModulePlaceholder } from '@/pages/ModulePlaceholder';
 import { Settings } from '@/pages/Settings';
 import { NotFound } from '@/pages/NotFound';
@@ -107,7 +109,7 @@ function AppRoutes() {
             path="/medications"
             element={
               <AnimatedLayout>
-                <ModulePlaceholder moduleId="medications" phase={3} />
+                <Medications />
               </AnimatedLayout>
             }
           />
@@ -123,7 +125,7 @@ function AppRoutes() {
             path="/schedule"
             element={
               <AnimatedLayout>
-                <ModulePlaceholder moduleId="schedule" phase={3} />
+                <Schedule />
               </AnimatedLayout>
             }
           />

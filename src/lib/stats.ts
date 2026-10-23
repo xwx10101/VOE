@@ -115,3 +115,48 @@ export function refillDaysLeft(med: Medication): number {
   if (perDay === 0) return Number.POSITIVE_INFINITY;
   return Math.floor(med.supplyRemaining / perDay);
 }
+
+export type RiskLevel = 'low' | 'medium' | 'high';
+
+export interface DoseRisk {
+  /** 0–100 (higher = more likely to be missed). */
+  score: number;
+  level: RiskLevel;
+}
+
+/**
+ * Missed-dose risk score for one medication — explainable blend of:
+ * 70% inverse 7-day adherence + 30% miss-rate over the last 3 days
+ * (recent behavior predicts near-future behavior).
+ */
+export function missedDoseRisk(med: Medication, doseLog: DoseLogEntry[]): DoseRisk {
+  if (med.asNeeded) return { score: 0, level: 'low' };
+  const week = adherenceReport([med], doseLog, 7, { medicationId: med.id });
+  const invAdherence = week.pct === null ? 0 : 100 - week.pct;
+
+  const today = todayKey();
+  let recentMissed = 0;
+  let recentTotal = 0;
+  for (let back = 0; back < 3; back++) {
+    for (const dose of buildDayDoses([med], doseLog, addDaysToKey(today, -back))) {
+      if (dose.status === 'upcoming' || dose.status === 'due') continue;
+      recentTotal++;
+      if (dose.status === 'missed') recentMissed++;
+    }
+  }
+  const recentMissRate = recentTotal ? (recentMissed / recentTotal) * 100 : 0;
+  const score = Math.round(invAdherence * 0.7 + recentMissRate * 0.3);
+  return { score, level: score > 40 ? 'high' : score >= 15 ? 'medium' : 'low' };
+}
+
+/** How often an evening (≥18:00) dose was missed in the last `days` days. */
+export function eveningMissCount(med: Medication, doseLog: DoseLogEntry[], days = 7): number {
+  const from = addDaysToKey(todayKey(), -(days - 1));
+  return doseLog.filter(
+    (e) =>
+      e.medicationId === med.id &&
+      e.status === 'missed' &&
+      e.date >= from &&
+      timeToMinutes(e.time) >= 18 * 60,
+  ).length;
+}

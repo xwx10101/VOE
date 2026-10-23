@@ -72,5 +72,7 @@ edit it safely. Brand colors: `src/index.css` (CSS variables) + `tailwind.config
   (adherence/doses/events/safety stats, medication timeline, rotating AI insights),
   Settings (profile, preferences, members CRUD, module toggles, JSON export, reset),
   domain data layer + conflict & anomaly engines.
-- ⏭️ Phase 3 — Medications & schedule · Phase 4 — Meals & safety ·
-  Phase 5 — Nasma AI Assistant · Phase 6 — PWA & QA.
+- ✅ **Phase 3 — Medications & Schedule**: member tabs, adherence ring + 14-day Recharts
+  trend, miss-dose risk badges, refill countdowns & alerts, dose-slot tracking, full CRUD;
+  week board with companion-aware conflict detection and one-tap AI resolution suggestions.
+- ⏭️ Phase 4 — Meals & safety · Phase 5 — Nasma AI Assistant · Phase 6 — PWA & QA.
