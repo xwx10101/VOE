@@ -4,7 +4,7 @@ import { ArrowLeft, ArrowRight, Check, ClipboardCheck, Info, RotateCcw, ShieldCh
 import { Button } from '@/components/shared/Button';
 import { SafetyNotice } from '@/components/shared/Feedback';
 import { ASSESSMENT_QUESTIONS, GOALS } from '@/data/questions';
-import { answeredCount, isAnswerComplete, optionFor } from '@/lib/scoring';
+import { answeredCount, computeAssessment, isAnswerComplete, optionFor } from '@/lib/scoring';
 import { useFamily } from '@/state/FamilyContext';
 import type { GoalId } from '@/types';
 
@@ -48,7 +48,8 @@ export default function Assessment() {
       setIndex(ASSESSMENT_QUESTIONS.findIndex((item) => !answers[item.id]));
       return;
     }
-    const computed = completeAssessment(note.trim() || undefined);
+    const computed = computeAssessment(answers, note.trim() || undefined);
+    completeAssessment(note.trim() || undefined);
     pushToast(`Assessment saved. Harmony Score ${computed.score} — ${computed.statusLabel}.`);
     navigate('/results');
   };

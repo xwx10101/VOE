@@ -143,3 +143,44 @@ describe('memory vault', () => {
     expect(await screen.findByText(/A quiet evening walk/i)).toBeTruthy();
   });
 });
+
+describe('guided judge demo', () => {
+  it('runs from the family introduction to the final statement', async () => {
+    const { default: Demo } = await import('@/pages/Demo');
+    renderWithRoutes(<Demo />, '/demo');
+
+    const next = () => fireEvent.click(screen.getByRole('button', { name: /Next step/i }));
+
+    expect(await screen.findByRole('heading', { level: 1, name: /Meet the Al Noor family/i })).toBeTruthy();
+    next();
+    expect(await screen.findByRole('heading', { level: 1, name: /Discover the connected signals/i })).toBeTruthy();
+    next();
+
+    expect(await screen.findByRole('heading', { level: 1, name: /Complete the family check-in/i })).toBeTruthy();
+    fireEvent.click(screen.getByRole('button', { name: /Complete the check-in/i }));
+    expect(await screen.findByRole('button', { name: /Re-run the check-in/i })).toBeTruthy();
+    expect(screen.getAllByText(/Needs Attention/i).length).toBeGreaterThan(0);
+    expect(screen.getByText(/−12/i)).toBeTruthy();
+
+    next();
+    expect(await screen.findByRole('heading', { level: 1, name: /Understand the recommendation/i })).toBeTruthy();
+    expect(screen.getByText(/Why this recommendation\?/i)).toBeTruthy();
+
+    next();
+    expect(await screen.findByRole('heading', { level: 1, name: /Generate the weekly plan/i })).toBeTruthy();
+    fireEvent.click(screen.getByRole('button', { name: /Generate the plan/i }));
+
+    next();
+    expect(await screen.findByRole('heading', { level: 1, name: /Optimise the schedule/i })).toBeTruthy();
+    fireEvent.click(screen.getByRole('button', { name: /Apply \d+ selected changes/i }));
+    expect(await screen.findByText(/Changes applied/i)).toBeTruthy();
+
+    next();
+    expect(await screen.findByRole('heading', { level: 1, name: /Review privacy and explainability/i })).toBeTruthy();
+    next();
+
+    expect(await screen.findByRole('heading', { level: 1, name: /The final family actions/i })).toBeTruthy();
+    expect(screen.getByText(/does not replace the family’s judgment/i)).toBeTruthy();
+    expect(screen.getByRole('button', { name: /Restart demo/i })).toBeTruthy();
+  });
+});

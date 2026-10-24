@@ -51,7 +51,7 @@ export function ScoreRing({
       typeof window !== 'undefined' &&
       window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    if (reduced || !node) {
+    if (reduced || !node || typeof window.requestAnimationFrame !== 'function') {
       setShown(score);
       return;
     }

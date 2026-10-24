@@ -96,6 +96,8 @@ export function FamilyProvider({ children }: { children: ReactNode }) {
   const [state, setState] = useState<FamilyState>(initialState);
   const [toasts, setToasts] = useState<ToastMessage[]>([]);
   const timers = useRef<number[]>([]);
+  const stateRef = useRef<FamilyState>(initialState);
+  stateRef.current = state;
 
   const pushToast = useCallback((title: string, tone: ToastMessage['tone'] = 'success') => {
     const id = uid('toast');
@@ -202,22 +204,11 @@ export function FamilyProvider({ children }: { children: ReactNode }) {
   }, []);
 
   const generatePlan = useCallback(() => {
-    let plan = DEMO_PLAN;
-    setState((current) => {
-      const hasCustom = current.plan.actions.length > 0;
-      const previousTitles = hasCustom ? current.plan.actions.map((action) => action.title) : [];
-      plan = buildWeeklyPlan(current.result, current.profile, current.profile.goals);
-      if (previousTitles.length) {
-        plan = {
-          ...plan,
-          actions: plan.actions.map((action, index) => ({
-            ...action,
-            title: previousTitles[index] ?? action.title,
-          })),
-        };
-      }
-      return { ...current, plan };
-    });
+    const plan = buildWeeklyPlan(stateRef.current.result, stateRef.current.profile, stateRef.current.profile.goals);
+    setState((current) => ({
+      ...current,
+      plan: buildWeeklyPlan(current.result, current.profile, current.profile.goals),
+    }));
     return plan;
   }, []);
 

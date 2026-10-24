@@ -71,6 +71,20 @@ calculated” panel listing each deduction.
 Recommendations, plan generation, schedule optimisation, and coach responses are all pure functions of
 the same inputs — identical inputs always produce identical output.
 
+## Presenter flow (about 4 minutes)
+
+1. **`/demo`** → *Meet the Al Noor family* (three generations, one ordinary week).
+2. *Discover the connected signals* → the Wednesday overlap.
+3. *Complete the check-in* → deterministic **45 / Needs Attention**, with every deduction listed.
+4. *Understand the recommendation* → open the reasoning panel; the family controls the outcome.
+5. *Generate the weekly plan* → seven actions, max two a day, each with a reason.
+6. *Optimise the schedule* → select proposals, apply, and show before/after responsibility split.
+7. *Review privacy* → the matrix: private entries never enter household summaries.
+8. *Final actions* → “FamilyMind AI does not replace the family’s judgment.”
+
+Press `←` / `→` to move between steps, **Restart** to reset the deterministic state, **Presenter notes**
+for talking points, **Exit demo** to explore the rest of the product.
+
 ## Architecture
 
 ```
